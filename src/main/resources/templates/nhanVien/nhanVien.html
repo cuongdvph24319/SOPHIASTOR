@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+                layout:decorate="~{/layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<section layout:fragment="content">
+    <div>
+        <table class="table" style="text-align: center">
+            <tbody><tr>
+                <th> ID</th>
+                <th> Name</th>
+                <th>Category Id</th>
+                <th>Create Date</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Available</th>
+                <th>Action</th>
+
+            </tr>
+            <tr>
+                <td>1017</td>
+                <td>Đỗ Văn Tuấn</td>
+                <td>1017</td>
+                <td>2023-06-02</td>
+                <td>    <img class="img-responsive" src="/img/product-5.jpg" style="width: 150px;height: 150px">
+                </td>
+                <td>7999.0</td>
+                <td>false</td>
+                <td class="button-cell">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myUpdate" data-id="1017" data-name="Đỗ Văn Tuấn" data-categoryentity="1017" data-createdate="2023-06-02" data-image="product-5.jpg" data-price="7999.0" data-available="false">Update</button>
+
+                    <!--                <a data-bs-toggle="modal" id="myLink" class="btn btn-primary" data-bs-target="#myUpdate" th:data-id="${product.Id}" style="color: #000" type="button">Update</a>-->
+
+                    <a class="btn btn-primary" style="color: #000" type="button" href="/gera1/delete/1017" method="delete">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1018</td>
+                <td>Đỗ Văn Tuấn</td>
+                <td>1   </td>
+                <td>2023-06-02</td>
+                <td>    <img class="img-responsive" src="/img/cat-4.jpg" style="width: 150px;height: 150px">
+                </td>
+                <td>7999.0</td>
+                <td>false</td>
+                <td class="button-cell">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myUpdate" data-id="1018" data-name="Đỗ Văn Tuấn" data-categoryentity="1   " data-createdate="2023-06-02" data-image="cat-4.jpg" data-price="7999.0" data-available="false">Update</button>
+
+                    <!--                <a data-bs-toggle="modal" id="myLink" class="btn btn-primary" data-bs-target="#myUpdate" th:data-id="${product.Id}" style="color: #000" type="button">Update</a>-->
+
+                    <a class="btn btn-primary" style="color: #000" type="button" href="/gera1/delete/1018" method="delete">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1020</td>
+                <td>Đỗ Văn </td>
+                <td>1   </td>
+                <td>2023-06-03</td>
+                <td>    <img class="img-responsive" src="/img/user.jpg" style="width: 150px;height: 150px">
+                </td>
+                <td>7999.0</td>
+                <td>false</td>
+                <td class="button-cell">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myUpdate" data-id="1020" data-name="Đỗ Văn " data-categoryentity="1   " data-createdate="2023-06-03" data-image="user.jpg" data-price="7999.0" data-available="false">Update</button>
+
+                    <!--                <a data-bs-toggle="modal" id="myLink" class="btn btn-primary" data-bs-target="#myUpdate" th:data-id="${product.Id}" style="color: #000" type="button">Update</a>-->
+
+                    <a class="btn btn-primary" style="color: #000" type="button" href="/gera1/delete/1020" method="delete">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1021</td>
+                <td>Đỗ Văn Tuấn</td>
+                <td>1017</td>
+                <td>2023-06-03</td>
+                <td>    <img class="img-responsive" src="/img/cat-2.jpg" style="width: 150px;height: 150px">
+                </td>
+                <td>7999.0</td>
+                <td>false</td>
+                <td class="button-cell">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myUpdate" data-id="1021" data-name="Đỗ Văn Tuấn" data-categoryentity="1017" data-createdate="2023-06-03" data-image="cat-2.jpg" data-price="7999.0" data-available="false">Update</button>
+
+                    <!--                <a data-bs-toggle="modal" id="myLink" class="btn btn-primary" data-bs-target="#myUpdate" th:data-id="${product.Id}" style="color: #000" type="button">Update</a>-->
+
+                    <a class="btn btn-primary" style="color: #000" type="button" href="/gera1/delete/1021" method="delete">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1022</td>
+                <td>Đỗ Văn Tuấn12</td>
+                <td>2   </td>
+                <td>2023-06-07</td>
+                <td>    <img class="img-responsive" src="/img/cat-2.jpg" style="width: 150px;height: 150px">
+                </td>
+                <td>7999.0</td>
+                <td>true</td>
+                <td class="button-cell">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myUpdate" data-id="1022" data-name="Đỗ Văn Tuấn12" data-categoryentity="2   " data-createdate="2023-06-07" data-image="cat-2.jpg" data-price="7999.0" data-available="true">Update</button>
+
+                    <!--                <a data-bs-toggle="modal" id="myLink" class="btn btn-primary" data-bs-target="#myUpdate" th:data-id="${product.Id}" style="color: #000" type="button">Update</a>-->
+
+                    <a class="btn btn-primary" style="color: #000" type="button" href="/gera1/delete/1022" method="delete">Delete</a>
+                </td>
+            </tr>
+            </tbody></table>
+
+        <script>
+            // Retrieve the product ID and fill the modal
+            function openUpdateModal(event) {
+                var productId = event.target.getAttribute("data-id");
+                var productName = event.target.getAttribute("data-name");
+                var productCategoryEntity = event.target.getAttribute("data-categoryEntity");
+                var productCreateDate = event.target.getAttribute("data-createDate");
+                var productPrice = event.target.getAttribute("data-Price");
+                var productAvailable = event.target.getAttribute("data-Available");
+                var productImage = event.target.getAttribute("data-image");
+                // Perform any additional logic to fetch the product details using the ID if needed
+
+                // Example: Set the ID in the modal's input field
+                document.getElementById("id").value = productId;
+                document.getElementById("name").value = productName;
+                document.getElementById("category").value = productCategoryEntity;
+                document.getElementById("createDate").value = productCreateDate;
+                document.getElementById("price").value = productPrice;
+                document.images['idimg'].src = '/img/'+productImage;
+                document.getElementById("available").value = productAvailable;
+                // Show the modal
+                $('#myUpdate').modal('show');
+            }
+
+            // Attach the click event listener to the update buttons
+            var updateButtons = document.querySelectorAll('button[data-bs-target="#myUpdate"]');
+            updateButtons.forEach(function(button) {
+                button.addEventListener('click', openUpdateModal);
+            });
+
+        </script>
+        <!--     create -->
+        <div class="modal" id="myCreate">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">CREATE PRODUCT</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="/gera1/save-product" method="post">
+                            <label for="name1">Name:</label>
+                            <input type="text" id="name1" name="name" value="">
+
+
+                            <label for="image1">Image:</label>
+                            <input type="file" id="image1" name="image">
+
+                            <label for="price1">Price:</label>
+                            <input type="text" id="price1" name="price" value="">
+
+                            <label for="createDate1">Create Date:</label>
+                            <input type="date" id="createDate1" name="createDate" value="">
+
+                            <label for="available1">Available:</label>
+                            <input type="checkbox" id="available1" name="available" value="true"><input type="hidden" name="_available" value="on">
+
+                            <!-- Category -->
+                            <label for="category1">Category:</label>
+                            <select id="category1" name="categoryEntity">
+                                <option value="1   ">Đỗ Văn Tuấn</option>
+                                <option value="1017">w</option>
+                                <option value="2   ">Nhựa </option>
+                                <option value="22  ">iPhone s</option>
+                            </select>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!--    update-->
+        <div class="modal" id="myUpdate">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">UPDATE PRODUCT</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="/gera1/save-product" method="post">
+                            <input type="text" id="id" name="id" style="display: none" value="0">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" value="">
+
+                            <br>
+                            <label for="idimg">Image:</label>
+                            <img class="img-responsive" id="idimg" style="width: 150px;height: 150px">
+                            <input type="file" name="image" required="" id="image">
+
+                            <br>
+                            <label for="price">Price:</label>
+                            <input type="text" id="price" name="price" value="">
+
+                            <br>
+                            <label for="createDate">Create Date:</label>
+                            <input type="date" name="createDate" id="createDate" value="">
+
+                            <br>
+                            <label for="available">Available:</label>
+                            <input type="checkbox" id="available" name="available" value="true"><input type="hidden" name="_available" value="on">
+
+                            <!-- Category -->
+                            <label for="category">Category:</label>
+                            <select id="category" name="categoryEntity">
+                                <option value="1   ">Đỗ Văn Tuấn</option>
+                                <option value="1017">w</option>
+                                <option value="2   ">Nhựa </option>
+                                <option value="22  ">iPhone s</option>
+                            </select>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                </div>
+            </div></div></div>
+</section>
+
+</body>
+</html>
