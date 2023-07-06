@@ -25,4 +25,13 @@ public class testController {
     public String w4(){
         return "template/cart";
     }
+
+    @RequestMapping("/ProductDetail")
+    public String w5(){
+        return "sanPham/chiTietSanPham";
+    }
+    @RequestMapping("/ProductIndex")
+    public String w6(){
+        return "sanPham/sanPham";
+    }
 }
