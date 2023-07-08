@@ -21,8 +21,8 @@ public class VouCherChiTiet {
     @Column(name = "SoTienConLai")
     private Double soTienConLai;
 
-    @Column(name = "PhamTramGiam")
-    private Double phamTramGiam;
+//    @Column(name = "PhamTramGiam")
+//    private Double phamTramGiam;
 
     @Column(name = "TrangThai")
     private Integer trangThai;
