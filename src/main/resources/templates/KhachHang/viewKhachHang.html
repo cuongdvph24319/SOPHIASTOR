@@ -1,0 +1,44 @@
+<section xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+         layout:decorate="~{/layouts/layout}">
+  <div layout:fragment="content" class="col-md-12">
+    <form th:action="@{/khach-hang/add}" th:object="${khach}" method="post">
+      <input th:field="*{id}" type="hidden" class="form-control" required>
+      <div class="form-group">
+        <label>maKhachHang</label>
+        <input th:field="*{maKhachHang}" type="text" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>tenKhachHang</label>
+        <input th:field="*{tenKhachHang}" type="text" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>ngaySinh</label>
+        <input th:field="*{ngaySinh}" type="date" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input th:field="*{soDienThoai}" type="text" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>email</label>
+        <input th:field="*{email}" type="text" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>matKhau</label>
+        <input th:field="*{matKhau}" type="text" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>trangThai</label>
+        <input th:field="*{trangThai}" type="radio" class="form-control" value="1" required>hoat
+        dong
+        <input th:field="*{trangThai}" type="radio" class="form-control" value="0" required>khong
+        hoat dong
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+</section>
+
+
+

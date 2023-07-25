@@ -1,0 +1,107 @@
+<section xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+         layout:decorate="~{/layouts/layout}">
+  <div layout:fragment="content" class="col-md-12">
+
+    <div class="row">
+      <div class="col-3">
+        <div class="input-group">
+          <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search"
+                 aria-describedby="search-addon"/>
+          <button type="button" class="btn btn-primary mx-2">Tìm kiếm</button>
+        </div>
+      </div>
+
+      <div class="col-5"></div>
+
+      <div class="col-4">
+        <div class="input-group">
+          <label for="">Trạng thái: &ensp; </label>
+          <select class="form-control">
+            <option value="">Tất cả</option>
+            <option value="">Hoạt động</option>
+            <option value="">Không hoạt động</option>
+          </select> &nbsp;
+          <button type="button" class="btn btn-warning text-white">Lọc</button>
+
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6 p-0 d-flex  justify-content-center">
+            <h2 class="ml-lg-2">QUẢN LÍ PHIẾU GIAO HÀNG</h2>
+          </div>
+
+          <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
+            <a th:href="@{/phieu-giao-hang/view}" class="btn btn-success" ><i
+                    class="material-icons">&#xE147;
+            </i> <span>Thêm mới</span></a>
+            <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
+              <i class="material-icons">&#xE15C;</i> <span>Xóa</span></a> -->
+          </div>
+        </div>
+      </div>
+
+
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th>STT</th>
+          <th>maPhieuGiaoHang</th>
+          <th>tenNguoiNhan</th>
+          <th>soDienThoaiNguoiNhan</th>
+          <th>nguoiGiao</th>
+          <th>soDienThoaiNguoiGiao</th>
+          <th>ngayGiao</th>
+          <th>phiGiaoHang</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="phieuGiaoHang,k : ${phieuGiaoHang}">
+          <td th:text="${k.count}"></td>
+          <td th:text="${phieuGiaoHang.maPhieuGiaoHang}"></td>
+          <td th:text="${phieuGiaoHang.tenNguoiNhan}"></td>
+          <td th:text="${phieuGiaoHang.soDienThoaiNguoiNhan}"></td>
+          <td th:text="${phieuGiaoHang.nguoiGiao}"></td>
+          <td th:text="${phieuGiaoHang.soDienThoaiNguoiGiao}"></td>
+          <td th:text="${phieuGiaoHang.ngayGiao}"></td>
+          <td th:text="${phieuGiaoHang.phiGiaoHang}"></td>
+          <td>
+            <a class="edit"
+               th:href="@{/phieu-giao-hang/edit/{id} (id=${phieuGiaoHang.id})}">
+              <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+            <a onclick="return(confirm('Ban muon saoo'))" class="delete"  th:href="@{/phieu-giao-hang/delete/{id} (id=${phieuGiaoHang.id})}">
+              <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="clearfix d-flex justify-content-center ">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" th:if="${pageNo > 0}"
+               th:href="@{/phieu-giao-hang/hien-thi(pageNo=${pageNo - 1})}">Prev</a>
+            <span class="page-link" th:unless="${pageNo > 0}">Prev</span>
+          </li>
+          <li th:each="i: ${#numbers.sequence(0, phieuGiaoHang.totalPages-1)}" class="page-item">
+            <a th:href="@{/phieu-giao-hang/hien-thi(pageNo=${i})}" class="page-link"
+               th:text="${i +1}"></a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link" th:if="${pageNo < phieuGiaoHang.totalPages -1}"
+               th:href="@{/phieu-giao-hang/hien-thi(pageNo=${pageNo + 1})}">Next</a>
+            <span class="page-link" th:unless="${pageNo < phieuGiaoHang.totalPages -1}">Next</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

@@ -1,0 +1,67 @@
+<section xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+         layout:decorate="~{/layouts/layout}">
+  <div layout:fragment="content" class="col-md-12">
+    <form th:action="@{/phieu-giao-hang/add}" th:object="${phieuGiaoHang}" method="post">
+      <input th:field="*{id}" type="hidden" class="form-control" >
+      <div class="form-group">
+        <label>maPhieuGiaoHang</label>
+        <input th:field="*{maPhieuGiaoHang}" type="text" class="form-control" >
+      </div>
+      <div class="form-group">
+        <label>tenNguoiNhan</label>
+        <input th:field="*{tenNguoiNhan}" type="text" class="form-control" >
+      </div>
+      <div class="form-group">
+        <label>soDienThoaiNguoiNhan</label>
+        <input th:field="*{soDienThoaiNguoiNhan}" type="text" class="form-control" >
+      </div>
+      <div class="form-group">
+        <label>nguoiGiao</label>
+        <input th:field="*{nguoiGiao}" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>soDienThoaiNguoiGiao</label>
+        <input th:field="*{soDienThoaiNguoiGiao}" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>ngayGiao</label>
+        <input th:field="*{ngayGiao}" type="date" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>ngayNhan</label>
+        <input th:field="*{ngayNhan}" type="date" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>nguoiTao</label>
+        <input th:field="*{nguoiTao}" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>phiGiaoHang</label>
+        <input th:field="*{phiGiaoHang}" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Địa chỉ</label>
+        <select  th:field="*{diaChi}">
+          <option th:each="diaChi: ${diaChi}" th:text="${diaChi.moTaChiTiet}+'-'+${diaChi.quanHuyen}" th:value="${diaChi.id}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Hóa đơn</label>
+        <select  th:field="*{hoaDon}">
+          <option th:each="hoaDon: ${hoaDon}" th:text="${hoaDon.maHoaDon}" th:value="${hoaDon.id}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+      <label>trangThai</label>
+      <input th:field="*{trangThai}" type="radio" class="form-control" name="trangThai" value="1">hoat dong
+      <input th:field="*{trangThai}" type="radio" class="form-control" name="trangThai" value="0">khong hoat dong
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+</section>
+
+
+
