@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Base64;
 import java.util.UUID;
 
 @Entity
@@ -20,7 +21,9 @@ public class Anh {
     @Column(name = "Id")
     private UUID id;
 
-    private String anh;
+    @Lob
+    @Column(name = "Anh")
+    private byte[] anh;
 
     private Integer TrangThai;
 
@@ -28,4 +31,7 @@ public class Anh {
     @JoinColumn(name = "idChiTietNuocHoa")
     private ChiTietNuocHoa chiTietNuocHoa;
 
+    public String getBase64Image() {
+        return Base64.getEncoder().encodeToString(this.anh);
+    }
 }

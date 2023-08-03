@@ -1,84 +1,64 @@
-package poly.edu.sophiastore.entity;
+package poly.edu.sophiastore.request;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import poly.edu.sophiastore.request.ChiTietNuocHoaView;
+import org.springframework.stereotype.Component;
+import poly.edu.sophiastore.entity.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
-@Table(name = "ChiTietNuocHoa")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChiTietNuocHoa {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "Id")
+@Component
+public class ChiTietNuocHoaView {
     private UUID id;
-
-    @Column(name = "MaNuocHoa")
+    @NotBlank(message = "Vui lòng nhập mã nước hoa")
     private String maNuocHoa;
-
-    @Column(name = "TenNuocHoa")
+    @NotBlank(message = "Vui lòng nhập tên nước hoa")
     private String tenNuocHoa;
-
-    @Column(name = "SoLuong")
+    @NotNull(message = "Vui lòng nhập số lượng")
     private Integer soLuong;
-
-    @Column(name = "DonGia")
+    @NotNull(message = "Vui lòng nhập đơn giá")
     private Integer donGia;
-
-    @Column(name = "NamPhatHanh")
+    @NotNull(message = "Vui lòng nhập năm phát hành")
     private Integer namPhatHanh;
-
-    @Column(name = "MoTa")
+    @NotBlank(message = "Vui lòng nhập mô tả")
     private String moTa;
-
-    @Column(name = "TrangThai")
     private Integer trangThai;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idChiTietNuocHoa")
     private ChiTietNuocHoa chiTietNuocHoa;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idSanPham")
+    @NotNull(message = "Vui lòng chọn sản phẩm")
     private SanPham sanPham;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idNongDo")
+    @NotNull(message = "Vui lòng chọn nồng độ")
     private NongDo nongDo;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idDungTich")
+    @NotNull(message = "Vui lòng chọn dung tích")
     private DungTich dungTich;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idDoToaHuong")
+    @NotNull(message = "Vui lòng chọn độ tỏa hương")
     private DoToaHuong doToaHuong;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idDoLuuHuong")
+    @NotNull(message = "Vui lòng chọn độ lưu hương")
     private DoLuuHuong doLuuHuong;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idKetCau")
+    @NotNull(message = "Vui lòng chọn kết cấu")
     private KetCau ketCau;
 
-    @OneToMany(mappedBy = "chiTietNuocHoa", fetch = FetchType.LAZY)
-    List<Anh> danhSachAnh = new ArrayList<>();
+    private List<ChiTietNuocHoaView> chiTietNuocHoaViews = new ArrayList<>(); // Initialize the list here
 
-    @OneToMany(mappedBy = "chiTietNuocHoa", fetch = FetchType.LAZY)
-    List<ChiTietHuong> chiTietHuongList = new ArrayList<>();
+    public List<ChiTietNuocHoaView> getChiTietNuocHoaViews() {
+        return chiTietNuocHoaViews;
+    }
 
-    public void loadFormViewModel(ChiTietNuocHoaView chiTietNuocHoa){
+    public void setChiTietNuocHoaViews(List<ChiTietNuocHoaView> chiTietNuocHoaViews) {
+        this.chiTietNuocHoaViews = chiTietNuocHoaViews;
+    }
+
+    public void loadFormModel(ChiTietNuocHoa chiTietNuocHoa){
         this.setMaNuocHoa(chiTietNuocHoa.getMaNuocHoa());
         this.setTenNuocHoa(chiTietNuocHoa.getTenNuocHoa());
         this.setSoLuong(chiTietNuocHoa.getSoLuong());

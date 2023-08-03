@@ -1,21 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
 
     <title>Sophia Store</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <!----css3---->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="/css/custom.css">
 
 
     <!--google fonts -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 
     <!--google material icon-->
@@ -28,7 +36,7 @@
 
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3><img src="img/logo.png" class="img-fluid"/><span>SOPHIA STORE</span></h3>
+            <h3><img src="/img/logo.png" class="img-fluid"/><span>SOPHIA STORE</span></h3>
         </div>
         <ul class="list-unstyled components">
             <li class="active">
@@ -55,21 +63,58 @@
                 </ul>
             </li>
 
+            <!-- Đoạn mã để thêm dropdown vào "NƯỚC HOA" -->
             <li class="dropdown">
                 <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="material-icons">apps</i><span>NƯỚC HOA</span></a>
+                    <i class="material-icons">apps</i><span>NƯỚC HOA</span>
+                </a>
                 <ul class="collapse list-unstyled menu" id="pageSubmenu2">
                     <li>
-                        <a href="#">Page 1</a>
+                        <a th:href="@{/nuoc-hoa/hien-thi}">Nước Hoa</a>
+                    </li>
+<!--                    <li class="dropdown"> &lt;!&ndash; Thêm class "dropdown" vào đây &ndash;&gt;-->
+<!--                        <a href="#dropdown-menu1" class="dropdown-toggle" data-toggle="dropdown" role="button"-->
+<!--                           aria-haspopup="true"-->
+<!--                           aria-expanded="false">-->
+<!--                            Sản phẩm <span class="caret"></span>-->
+<!--                        </a>-->
+<!--                        <ul class="dropdown-menu" id="dropdown-menu1"> &lt;!&ndash; Thêm class "dropdown-menu" vào đây &ndash;&gt;-->
+<!--                            <li>-->
+<!--                                <a th:href="@{/loai-san-pham/hien-thi}">Loại sản phẩm</a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a th:href="@{/nha-san-xuat/hien-thi}">Nhà sản xuất</a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a th:href="@{/phan-loai-san-pham/hien-thi}">Phân loại sản phẩm</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+                    <li>
+                        <a th:href="@{/san-pham/hien-thi}">Sản phẩm</a>
                     </li>
                     <li>
-                        <a href="#">Page 2</a>
+                        <a th:href="@{/thuong-hieu/hien-thi}">Thương hiệu</a>
                     </li>
                     <li>
-                        <a href="#">Page 3</a>
+                        <a th:href="@{/xuat-xu/hien-thi}">Xuất xứ</a>
                     </li>
+                    <li>
+                        <a th:href="@{/do-luu-huong/hien-thi}">Độ lưu hương</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/do-toa-huong/hien-thi}">Độ tỏa hương</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/nong-do/hien-thi}">Nồng độ</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/ket-cau/hien-thi}">Kết cấu</a>
+                    </li>
+
                 </ul>
             </li>
+
 
             <li class="dropdown">
                 <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -106,19 +151,19 @@
             </li>
 
             <li class="dropdown">
-                <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <a href="/voucher/hien-thi">
                     <i class="material-icons">border_color</i><span>VOUCHER</span></a>
-                <ul class="collapse list-unstyled menu" id="pageSubmenu5">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
-                </ul>
+                <!--                <ul class="collapse list-unstyled menu" id="pageSubmenu5">-->
+                <!--                    <li>-->
+                <!--                        <a href="#">Page 1</a>-->
+                <!--                    </li>-->
+                <!--                    <li>-->
+                <!--                        <a href="#">Page 2</a>-->
+                <!--                    </li>-->
+                <!--                    <li>-->
+                <!--                        <a href="#">Page 3</a>-->
+                <!--                    </li>-->
+                <!--                </ul>-->
             </li>
 
 
@@ -154,7 +199,6 @@
                     </li>
                 </ul>
             </li>
-
 
 
             <li class="">
@@ -245,13 +289,11 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#"><span class="material-icons">
-                              settings
+                                                <a href="#"><span class="material-icons">settings
                             </span>Cài đặt</a>
                                             </li>
                                             <li>
-                                                <a href="#"><span class="material-icons">
-                              logout</span>Đăng xuất</a>
+                                                <a href="#"><span class="material-icons">logout</span>Đăng xuất</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -296,10 +338,10 @@
 </div>
 
 
-<script src="js/jquery-3.3.1.slim.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery-3.3.1.min.js"></script>
+<script src="/js/jquery-3.3.1.slim.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
 
 
 <script type="text/javascript">
@@ -315,6 +357,10 @@
         });
 
     });
+    $(document).ready(function () {
+        $(".dropdown-toggle").dropdown(); // Dòng này để kích hoạt dropdown
+    });
+
 
 </script>
 

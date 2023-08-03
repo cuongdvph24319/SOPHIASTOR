@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giao diện bảng và form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body layout:fragment="content">
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Danh sách Dung Tích</h3>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Mã Dung Tích</th>
+                    <th>Tên Dung Tích</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dungTich : ${danhSachDungTich}">
+                    <td th:text="${dungTich.maDungTich}"></td>
+                    <td th:text="${dungTich.dungTich + 'ml'}"></td>
+                    <td th:text="${dungTich.trangThai == 1 ? 'Hoạt động' : 'Ngưng hoạt động'}"></td>
+                    <td>
+                        <a th:href="@{/dung-tich/edit/{id}(id=${dungTich.id})}" class="btn btn-primary btn-sm me-2">Edit</a>
+                        <a th:href="@{/dung-tich/delete/{id}(id=${dungTich.id})}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:if="${page > 0}">
+                    <a th:href="@{/dung-tich/hien-thi(page=${page - 1})}" class="page-link">Previous</a>
+                </li>
+                <li class="page-item" th:each="pageNumber : ${#numbers.sequence(0, totalPages-1)}">
+                    <a th:href="@{/dung-tich/hien-thi(page=${pageNumber})}" class="page-link"
+                       th:text="${pageNumber+1}"></a>
+                </li>
+                <li class="page-item" th:if="${page < totalPages - 1}">
+                    <a th:href="@{/dung-tich/hien-thi(page=${page + 1})}" class="page-link">Next</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h3>Thêm Dung Tích</h3>
+            <form th:action="@{/dung-tich/store}" method="post" th:object="${data}">
+                <div class="form-group">
+                    <label for="maDungTich">Mã Dung Tích:</label>
+                    <input type="text" class="form-control" id="maDungTich" name="maDungTich"
+                           th:field="*{maDungTich}"/>
+                    <span th:if="${#fields.hasErrors('maDungTich')}" class="text-danger" th:errors="*{maDungTich}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="dungTich">Tên Dung Tích:</label>
+                    <input type="number" class="form-control" id="dungTich" name="dungTich"
+                           th:field="*{dungTich}"/>
+                    <span th:if="${#fields.hasErrors('dungTich')}" class="text-danger" th:errors="*{dungTich}"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-check-label">Trạng thái:</label>
+                    <div>
+                        <input type="radio" class="form-check-input" name="trangThai" id="trangThai1" th:field="*{trangThai}" value="1"/>
+                        <label class="form-check-label" for="trangThai1">Hoạt động</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-input" name="trangThai" id="trangThai"  th:field="*{trangThai}" value="0"/>
+                        <label class="form-check-label" for="trangThai">Không hoạt động</label>
+                    </div>
+                    <span th:if="${#fields.hasErrors('trangThai')}" class="text-danger" th:errors="*{trangThai}"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Lưu</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

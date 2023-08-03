@@ -1,6 +1,5 @@
-package poly.edu.sophiastore.entity;
+package poly.edu.sophiastore.request;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,33 +7,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
-import poly.edu.sophiastore.request.ThuongHieuView;
+import poly.edu.sophiastore.entity.ThuongHieu;
 
 import java.util.UUID;
 
-@Entity
-@Table(name = "ThuongHieu")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class ThuongHieu {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "Id")
+public class ThuongHieuView {
     private UUID id;
-    @Column(name = "MaThuongHieu")
+    @NotBlank(message = "Vui lòng nhập mã thương hiệu")
     private String maThuongHieu;
-    @Column(name = "TenThuongHieu")
+    @NotBlank(message = "Vui lòng nhập tên thương hiệu")
     private String tenThuongHieu;
-    @Column(name = "TrangThai")
+    @NotNull(message = "Vui lòng chọn trạng thái của thương hiệu")
     private Integer trangThai;
 
-    public void loadFormViewModel(ThuongHieuView thuongHieu){
+    public void loadFormModel(ThuongHieu thuongHieu){
         this.setMaThuongHieu(thuongHieu.getMaThuongHieu());
         this.setTenThuongHieu(thuongHieu.getTenThuongHieu());
         this.setTrangThai(thuongHieu.getTrangThai());
     }
 }
-

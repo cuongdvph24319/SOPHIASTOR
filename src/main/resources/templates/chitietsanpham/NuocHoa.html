@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Nước hoa</title>
+    <!-- Link các file CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            margin-right: 10px;
+            margin-right: 5px; /* Khoảng cách bên phải đã được rút ngắn */
+        }
+
+        .custom-select-yellow select.form-control {
+            font-size: 16px;
+            background-color: transparent;
+            color: #ffc107; /* Màu vàng */
+            border: none;
+        }
+
+        .custom-select-yellow .form-control option {
+            color: #000;
+        }
+
+        .btn {
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .table {
+            width: 100%;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+            justify-content: space-between;
+        }
+
+        .col-md-2, .col-md-3 {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+
+<body layout:fragment="content">
+<div class="table-title">
+    <div class="row">
+        <div class="col-sm-6 p-0 d-flex  justify-content-center">
+            <h2 class="ml-lg-2">QUẢN LÝ NƯỚC HOA</h2>
+        </div>
+
+        <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
+            <a th:href="@{/nuoc-hoa/create}" class="btn btn-success">
+                <i class="material-icons">&#xE147;</i> <span>Thêm mới</span></a>
+            <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
+              <i class="material-icons">&#xE15C;</i> <span>Xóa</span></a> -->
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <form>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Tìm sản phẩm">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Bổ sung vào phần form tìm kiếm -->
+    <div class="row mb-3">
+        <div class="col-md-2.6">
+            <div class="form-group">
+                <label for="sanPhamSelect">Sản phẩm:</label>
+                <div class="custom-select-yellow">
+                    <select class="form-control" id="sanPhamSelect">
+                        <option value="">Tất cả</option>
+                        <option th:each="sanPham : ${danhSachSanPham}" th:value="${sanPham.id}"
+                                th:text="${sanPham.tenSanPham}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2.6">
+            <div class="form-group">
+                <label for="nongDoSelect">Nồng độ:</label>
+                <div class="custom-select-yellow">
+                    <select class="form-control" id="nongDoSelect">
+                        <option value="">Tất cả</option>
+                        <option th:each="nongDo : ${danhSachNongDo}" th:value="${nongDo.id}"
+                                th:text="${nongDo.tenNongDo}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2.6">
+            <div class="form-group">
+                <label for="dungTichSelect">Dung tích:</label>
+                <div class="custom-select-yellow">
+                    <select class="form-control" id="dungTichSelect">
+                        <option value="">Tất cả</option>
+                        <option th:each="dungTich : ${danhSachDungTich}" th:value="${dungTich.id}"
+                                th:text="${dungTich.dungTich}">Tất cả
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2.6">
+            <div class="form-group">
+                <label for="doToaHuongSelect">Độ toả hương:</label>
+                <div class="custom-select-yellow">
+                    <select class="form-control" id="doToaHuongSelect">
+                        <option value="">Tất cả</option>
+                        <option th:each="toaHuong : ${danhSachDoToaHuong}" th:value="${toaHuong.id}"
+                                th:text="${toaHuong.khoangCachToiThieu} + '-' + ${toaHuong.khoangCachToiDa}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2.6">
+            <div class="form-group">
+                <label for="doLuuHuongSelect">Độ lưu hương:</label>
+                <div class="custom-select-yellow">
+                    <select class="form-control" id="doLuuHuongSelect">
+                        <option value="">Tất cả</option>
+                        <option th:each="luuHuong : ${danhSachDoLuuHuong}" th:value="${luuHuong.id}"
+                                th:text="${luuHuong.ThoiGianToiThieu} + '-' + ${luuHuong.thoiGianToiDa}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 justify-content-center"> <!-- Thêm justify-content-center ở đây -->
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ketCauSelect">Kết cấu:</label>
+                <div class="custom-select-yellow">
+                    <select class="form-control" id="ketCauSelect">
+                        <option value="">Tất cả</option>
+                        <option th:each="ketCau : ${danhSachKetCau}" th:value="${ketCau.id}"
+                                th:text="${ketCau.tenKetCau}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="thuongHieuSelect">Thương hiệu:</label>
+                <div class="custom-select-yellow">
+                    <select class="form-control" id="thuongHieuSelect">
+                        <option value="">Tất cả</option>
+                        <option th:each="thuongHieu : ${danhSachThuongHieu}" th:value="${thuongHieu.id}"
+                                th:text="${thuongHieu.tenThuongHieu}">Tất cả
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="xuatXuSelect">Xuất xứ:</label>
+                <div class="custom-select-yellow">
+                    <select class="form-control" id="xuatXuSelect">
+                        <option value="">Tất cả</option>
+                        <option th:each="xuatXu : ${danhSachXuatXu}" th:value="${xuatXu.id}"
+                                th:text="${xuatXu.tenXuatXu}">Tất cả
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="tangHuongSelect">Tầng hương:</label>
+                <div class="custom-select-yellow">
+                    <select class="form-control" id="tangHuongSelect">
+                        <option value="">Tất cả</option>
+                        <!-- Các tùy chọn tầng hương sẽ được lặp ở đây -->
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>Ảnh</td>
+            <th>Mã</th>
+            <th>Tên</th>
+            <th>Dung tích</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Nồng độ</th>
+            <th>Xuất xứ</th>
+            <th>Thương hiệu</th>
+            <th>Kết cấu</th>
+            <th>Trạng thái</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ctsp : ${danhSachNuocHoa}">
+            <td>
+                <div id="selectedThumbnailDiv"></div>
+            </td>
+            <td th:text="${ctsp.maNuocHoa}"></td>
+            <td th:text="${ctsp.tenNuocHoa} + ' ' + ${ctsp.sanPham.tenSanPham}"></td>
+            <td th:text="${ctsp.dungTich.dungTich}"></td>
+            <td th:text="${ctsp.soLuong}"></td>
+            <td th:text="${ctsp.donGia}"></td>
+            <td th:text="${ctsp.nongDo.tenNongDo}"></td>
+            <td th:text="${ctsp.sanPham.xuatXu.tenXuatXu}"></td>
+            <td th:text="${ctsp.sanPham.thuongHieu.tenThuongHieu}"></td>
+            <td th:text="${ctsp.ketCau.tenKetCau}"></td>
+            <td>
+                <span th:text="${ctsp.trangThai == 1 ? 'Còn bán' : 'Ngừng kinh doanh'}"></span>
+            </td>
+            <td>
+            <td>
+                <a th:href="@{/nuoc-hoa/edit/{id}(id=${ctsp.id})}" class="edit">
+                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                </a>
+                <a th:href="@{/nuoc-hoa/delete/{id}(id=${ctsp.id})}" class="delete">
+                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                </a>
+                <a th:href="@{/nuoc-hoa/detail/{id}(id=${ctsp.id})}" class="detail">
+                    <i class="bi bi-eye-fill" data-toggle="tooltip" title="detail">&#128065;</i>
+                </a>
+
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <ul class="pagination justify-content-center">
+        <li class="page-item" th:if="${page > 0}">
+            <a th:href="@{/nuoc-hoa/hien-thi(page=${page - 1})}" class="page-link">Previous</a>
+        </li>
+        <li class="page-item" th:each="pageNumber : ${#numbers.sequence(0, totalPages-1)}">
+            <a th:href="@{/nuoc-hoa/hien-thi(page=${pageNumber})}" class="page-link"
+               th:text="${pageNumber+1}"></a>
+        </li>
+        <li class="page-item" th:if="${page < totalPages - 1}">
+            <a th:href="@{/nuoc-hoa/hien-thi(page=${page + 1})}" class="page-link">Next</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Các modal thêm mới và cập nhật sản phẩm -->
+<!-- Modal thêm mới -->
+<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProductModalLabel">Thêm mới nước hoa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form thêm mới sản phẩm sẽ được đặt ở đây -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal cập nhật -->
+<div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProductModalLabel">Cập nhật nước hoa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form cập nhật sản phẩm sẽ được đặt ở đây -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Link các file JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+    // Tạo event listener cho checkbox
+    $(document).ready(function() {
+        // Lắng nghe sự kiện khi checkbox thay đổi giá trị
+        $("input[type=checkbox]").on("change", function() {
+            // Kiểm tra xem checkbox có được chọn hay không
+            if ($(this).is(":checked")) {
+                // Nếu checkbox được chọn, lấy ảnh từ checkbox và hiển thị lên selectedThumbnailDiv
+                var selectedImg = $(this).closest("div").find("img");
+                var imgCopy = selectedImg.clone();
+                imgCopy.css("width", "100%"); // Kích thước ảnh có thể điều chỉnh tùy ý
+                $("#selectedThumbnailDiv").empty().append(imgCopy);
+            } else {
+                // Nếu checkbox không được chọn, xóa ảnh khỏi selectedThumbnailDiv
+                $("#selectedThumbnailDiv").empty();
+            }
+        });
+    });
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+    <style>
+        .center-label {
+            text-align: center;
+        }
+
+        .center-label label {
+            display: inline-block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body layout:fragment="content">
+<h2>Thêm mã voucher</h2>
+<div class="container">
+    <div class="border p-4">
+        <form method="post" th:action="${action}" th:object="${data}">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="maGiamGia"
+                               th:field="*{maGiamGia}"
+                               id="maGiamGia"
+                               placeholder="Nhập mã giảm giá"/>
+                        <label for="maGiamGia" class="form-label">Mã giảm giá</label>
+                        <span th:errors="*{maGiamGia}"></span>
+                        <div th:if="${data.duplicate}">
+                            Mã giảm giá đã tồn tại. Vui lòng chọn mã khác.
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="tenGiamGia"
+                               th:field="*{tenGiamGia}"
+                               id="tenGiamGia"
+                               placeholder="Nhập tên">
+                        <label for="tenGiamGia" class="form-label">Tên mã</label>
+                        <span th:errors="*{tenGiamGia}"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="phanTramGiamGia"
+                               th:field="*{phanTramGiamGia}" id="phanTramGiamGia"
+                               placeholder="Nhập phần trăm giảm giá">
+                        <label for="phanTramGiamGia" class="form-label">Phần trăm giảm
+                            giá</label>
+                        <span th:errors="*{phanTramGiamGia}"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="dieuKienGiamGia"
+                               th:field="*{dieuKienGiamGia}" id="dieuKienGiamGia"
+                               placeholder="Nhập phần trăm giảm giá">
+                        <label for="dieuKienGiamGia" class="form-label">Điều kiện giảm
+                            giá</label>
+                        <span th:errors="*{dieuKienGiamGia}"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" name="ngayBatDau"
+                               th:field="*{ngayBatDau}"
+                               id="ngayBatDau">
+                        <label for="ngayBatDau" class="form-label">Ngày bắt đầu</label>
+                        <span th:errors="*{ngayBatDau}"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" name="ngayKetThuc"
+                               th:field="*{ngayKetThuc}"
+                               id="ngayKetThuc">
+                        <label for="ngayKetThuc" class="form-label">Ngày kết thúc</label>
+                        <div th:if="${#fields.hasErrors('validDates')}">
+                            <span th:errors="*{validDates}"></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" name="soLuong"
+                               th:field="*{soLuong}"
+                               id="soLuong"
+                               placeholder="Nhập số lượng mã">
+                        <label for="soLuong" class="form-label">Số lượng mã</label>
+                        <div th:if="${#fields.hasErrors('soLuong')}">
+                            <span th:errors="*{soLuong}"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="btn btn-primary" th:text="${button}"></button>
+        </form>
+    </div>
+    <!--phần trăm hay giá tiền-->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

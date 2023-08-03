@@ -1,44 +1,33 @@
-package poly.edu.sophiastore.entity;
+package poly.edu.sophiastore.request;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import poly.edu.sophiastore.request.SanPhamView;
+import org.springframework.stereotype.Component;
+import poly.edu.sophiastore.entity.SanPham;
+import poly.edu.sophiastore.entity.ThuongHieu;
+import poly.edu.sophiastore.entity.XuatXu;
 
 import java.util.UUID;
 
-@Entity
-@Table(name = "SanPham")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SanPham {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "Id")
+@Component
+public class SanPhamView {
     private UUID id;
-
-    @Column(name = "MaSanPham")
     private String maSanPham;
-
-    @Column(name = "TenSanPham")
     private String tenSanPham;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "IdXuatXu")
     private XuatXu xuatXu;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "IdThuongHieu")
     private ThuongHieu thuongHieu;
 
-    public void loadFormViewModel(SanPhamView sanPham){
+    public void loadFormModel(SanPham sanPham){
         this.setMaSanPham(sanPham.getMaSanPham());
         this.setTenSanPham(sanPham.getTenSanPham());
         this.setXuatXu(sanPham.getXuatXu());
         this.setThuongHieu(sanPham.getThuongHieu());
     }
+
 }

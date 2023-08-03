@@ -17,7 +17,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ChiTietTangHuong {
     @EmbeddedId
-    @Column(name = "Id")
     private IdChiTietTangHuong id;
 
     @Column(name = "TrangThai")

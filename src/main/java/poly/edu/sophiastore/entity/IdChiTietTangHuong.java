@@ -12,8 +12,6 @@ import java.io.Serializable;
 
 @Embeddable
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class IdChiTietTangHuong implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)

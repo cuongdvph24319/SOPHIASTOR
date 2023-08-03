@@ -1,36 +1,32 @@
-package poly.edu.sophiastore.entity;
+package poly.edu.sophiastore.request;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import poly.edu.sophiastore.request.XuatXuView;
+import org.springframework.stereotype.Component;
+import poly.edu.sophiastore.entity.XuatXu;
 
 import java.util.UUID;
 
-@Entity
-@Table(name = "XuatXu")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class XuatXu {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "Id")
+@Component
+public class XuatXuView {
     private UUID id;
-
-    @Column(name = "MaXuatXu")
+    @NotBlank(message = "Vui lòng nhập mã xuất xứ")
     private String maXuatXu;
-
-    @Column(name = "TenXuatXu")
+    @NotBlank(message = "Vui lòng nhập tên xuất xứ")
     private String tenXuatXu;
-
-    @Column(name = "TrangThai")
+    @NotNull(message = "Vui lòng chọn trạng thái")
     private Integer trangThai;
 
-    public void loadFormViewModel(XuatXuView xuatXu){
+    public void loadFormModel(XuatXu xuatXu){
         this.setMaXuatXu(xuatXu.getMaXuatXu());
         this.setTenXuatXu(xuatXu.getTenXuatXu());
         this.setTrangThai(xuatXu.getTrangThai());

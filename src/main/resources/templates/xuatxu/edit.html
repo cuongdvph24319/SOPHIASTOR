@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body  layout:fragment="content">
+<div class="container">
+    <h3>Thêm Xuất Xứ</h3>
+    <form th:action="@{/xuat-xu/store}" method="post" th:object="${data}">
+        <div class="form-group">
+            <label for="maXuatXu">Mã Xuất Xứ:</label>
+            <input type="text" class="form-control" id="maXuatXu" name="maXuatXu"
+                   th:field="*{maXuatXu}"/>
+            <span th:if="${#fields.hasErrors('maXuatXu')}" class="text-danger" th:errors="*{maXuatXu}"></span>
+        </div>
+        <div class="form-group">
+            <label for="tenXuatXu">Tên Xuất Xứ:</label>
+            <input type="text" class="form-control" id="tenXuatXu" name="tenXuatXu"
+                   th:field="*{tenXuatXu}"/>
+            <span th:if="${#fields.hasErrors('tenXuatXu')}" class="text-danger" th:errors="*{tenXuatXu}"></span>
+        </div>
+        <div class="form-group">
+            <label class="form-check-label">Trạng thái:</label>
+            <div>
+                <input type="radio" class="form-check-input" name="trangThai" id="trangThai1" th:field="*{trangThai}" value="1"/>
+                <label class="form-check-label" for="trangThai1">Hoạt động</label>
+            </div>
+            <div>
+                <input type="radio" class="form-check-input" name="trangThai" id="trangThai"  th:field="*{trangThai}" value="0"/>
+                <label class="form-check-label" for="trangThai">Không hoạt động</label>
+            </div>
+            <span th:if="${#fields.hasErrors('trangThai')}" class="text-danger" th:errors="*{trangThai}"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Lưu</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,38 +1,30 @@
-package poly.edu.sophiastore.entity;
+package poly.edu.sophiastore.request;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import poly.edu.sophiastore.request.DungTichView;
+import org.springframework.stereotype.Component;
+import poly.edu.sophiastore.entity.DungTich;
 
 import java.util.UUID;
 
-@Entity
-@Table(name = "DungTich")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DungTich {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "Id")
+@Component
+public class DungTichView {
     private UUID id;
-
-    @Column(name = "MaDungTich")
     private String maDungTich;
-
-    @Column(name = "DungTich")
     private Integer dungTich;
-
-    @Column(name = "TrangThai")
     private Integer trangThai;
 
-    public void loadFormViewModel(DungTichView dungTich){
+    public void loadFormModel(DungTich dungTich){
         this.setMaDungTich(dungTich.getMaDungTich());
         this.setDungTich(dungTich.getDungTich());
         this.setTrangThai(dungTich.getTrangThai());
     }
+
 }

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/layout}">
+<head>
+    <title>Thêm sản phẩm nước hoa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body layout:fragment="content">
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Danh sách Sản Phẩm</h3>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Mã Sản Phẩm</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Xuất Xứ</th>
+                    <th>Thương Hiệu</th>
+                    <th>Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="sanPham : ${danhSachSanPham}">
+                    <td th:text="${sanPham.maSanPham}"></td>
+                    <td th:text="${sanPham.tenSanPham}"></td>
+                    <td th:text="${sanPham.xuatXu.tenXuatXu}"></td>
+                    <td th:text="${sanPham.thuongHieu.tenThuongHieu}"></td>
+                    <td>
+                        <a th:href="@{/san-pham/edit/{id}(id=${sanPham.id})}"
+                           class="btn btn-primary btn-sm me-2">Edit</a>
+                        <a th:href="@{/san-pham/delete/{id}(id=${sanPham.id})}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:if="${page > 0}">
+                    <a th:href="@{/san-pham/hien-thi(page=${page - 1})}" class="page-link">Previous</a>
+                </li>
+                <li class="page-item" th:each="pageNumber : ${#numbers.sequence(0, totalPages-1)}">
+                    <a th:href="@{/san-pham/hien-thi(page=${pageNumber})}" class="page-link"
+                       th:text="${pageNumber+1}"></a>
+                </li>
+                <li class="page-item" th:if="${page < totalPages - 1}">
+                    <a th:href="@{/san-pham/hien-thi(page=${page + 1})}" class="page-link">Next</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h1 class="text-center mb-4">Thêm sản phẩm nước hoa</h1>
+            <form th:action="@{/san-pham/store}" method="post" th:object="${data}">
+                <div class="row">
+                    <div class="col-6 form-group">
+                        <label for="maSanPham">Mã sản phẩm:</label>
+                        <input type="text" class="form-control" id="maSanPham" name="maSanPham" th:field="*{maSanPham}">
+                    </div>
+
+                    <div class="col-6 form-group">
+                        <label for="tenSanPham">Tên sản phẩm:</label>
+                        <input type="text" class="form-control" id="tenSanPham" name="tenSanPham" th:field="*{tenSanPham}">
+                    </div>
+
+                    <div class="col-6 form-group">
+                        <label for="xuatXu">Xuất xứ:</label>
+                        <div class="input-group">
+                            <select class="form-control" id="xuatXu" name="xuatXu">
+                                <option value="">Chọn xuất xứ</option>
+                                <option th:each="xuatXu : ${danhSachXuatXu}" th:value="${xuatXu.id}" th:text="${xuatXu.tenXuatXu}"></option>
+                            </select>
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#xuatXuModal">+
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 form-group">
+                        <label for="thuongHieu">Thương hiệu:</label>
+                        <div class="input-group">
+                            <select class="form-control" id="thuongHieu" name="thuongHieu">
+                                <option value="">Chọn thương hiệu</option>
+                                <option th:each="thuongHieu : ${danhSachThuongHieu}" th:value="${thuongHieu.id}" th:text="${thuongHieu.tenThuongHieu}"></option>
+                            </select>
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#thuongHieuModal">+
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Modal cho Xuất xứ -->
+<div class="modal fade" id="xuatXuModal" tabindex="-1" role="dialog" aria-labelledby="xuatXuModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="xuatXuModalLabel">Thêm Xuất xứ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Mã Xuất xứ</th>
+                                    <th>Tên Xuất xứ</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="xuatxu : ${danhSachXuatXu}">
+                                    <td th:text="${xuatxu.maXuatXu}"></td>
+                                    <td th:text="${xuatxu.tenXuatXu}"></td>
+                                    <td th:text="${xuatxu.trangThai}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="modal-body">
+                                <form action="/save-xuat-xu" method="post" id="formXuatXu">
+                                    <div class="form-group">
+                                        <label for="maXuatXu">Mã Xuất xứ:</label>
+                                        <input type="text" class="form-control" id="maXuatXu" name="maXuatXu"
+                                               th:value="${xuatXuView.maXuatXu}"/>
+                                        <span id="errorMessages" th:if="${#fields.hasErrors('xuatXuView.maXuatXu')}"
+                                              th:errors="*{xuatXuView.maXuatXu}"></span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tenXuatXu">Tên Xuất xứ:</label>
+                                        <input type="text" class="form-control" id="tenXuatXu" name="tenXuatXu"
+                                               th:value="${xuatXuView.tenXuatXu}"/>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="trangThaiXuatXu"
+                                               name="trangThai" th:checked="${xuatXuView.trangThai}"/>
+                                        <label class="form-check-label" for="trangThaiXuatXu">Trạng thái</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <!--                <button type="button" class="btn btn-primary" onclick="saveXuatXu()">Lưu</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="thuongHieuModal" tabindex="-1" role="dialog" aria-labelledby="thuongHieuModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="thuongHieuModalLabel">Thêm Thương hiệu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Bảng hiển thị thông tin Thương hiệu -->
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên Thương hiệu</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- Thay đổi dòng dữ liệu tương ứng với dữ liệu thực tế -->
+                                <!-- Ví dụ: -->
+                                <tr>
+                                    <td>1</td>
+                                    <td>Thương hiệu 1</td>
+                                    <td>
+                                        <input type="checkbox" disabled checked>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Thương hiệu 2</td>
+                                    <td>
+                                        <input type="checkbox" disabled>
+                                    </td>
+                                </tr>
+                                <!-- Các dòng dữ liệu khác ... -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Form nhập thông tin Thương hiệu -->
+                            <div class="form-group">
+                                <label for="tenThuongHieu">Tên Thương hiệu:</label>
+                                <input type="text" class="form-control" id="tenThuongHieu" name="tenThuongHieu">
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="trangThaiThuongHieu"
+                                       name="trangThaiThuongHieu" checked>
+                                <label class="form-check-label" for="trangThaiThuongHieu">Trạng thái</label>
+                            </div>
+                            <!-- Các thuộc tính khác của Thương hiệu ... -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="saveThuongHieu()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!--    function saveThuongHieu() {-->
+<!--        var thuongHieuValue = $('#thuongHieuInput').val();-->
+<!--        // Xử lý lưu thông tin thương hiệu vào cơ sở dữ liệu hoặc các tương tác khác tùy theo yêu cầu của bạn.-->
+<!--        // Sau khi lưu thành công, có thể cần cập nhật các tùy chọn trong thẻ select tại đây.-->
+<!--        // Đóng modal sau khi lưu thành công-->
+<!--        $('#thuongHieuModal').modal('hide');-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>
