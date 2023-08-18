@@ -23,17 +23,22 @@ public class KhachHangController {
     @Autowired
     KhachHangService khachHangService;
     @GetMapping("/hien-thi")
-    public String hienThi(Model model){
+    public String hienThi(Model model, String keyword,@RequestParam(value = "pageNo", defaultValue = "0") int pageNo, String trangThai){
+
         model.addAttribute("khach", new KhachHang());
-        Pageable pageable =  PageRequest.of(0,5);
-        Page<KhachHang> page = khachHangService.findAll(pageable);
-        model.addAttribute("khachHang",khachHangService.findAll());
-//        int totalPage = page.getTotalPages();
-//        List<Integer> integerList = new ArrayList<>();
-//        for (int i = 0; i < totalPage; i++) {
-//            integerList.add(i);
-//        }
-//        model.addAttribute("pagination",integerList);
+        Pageable pageable = PageRequest.of(pageNo, 10);
+
+        Page page = khachHangService.findAll(pageable);
+
+        model.addAttribute("tongNV", page.getTotalElements());
+        model.addAttribute("pageNo", pageNo);
+        if(keyword != null){
+            model.addAttribute("khachHang",khachHangService.findByKeyword(keyword));
+        }else if(trangThai != null){
+            model.addAttribute("khachHang",khachHangService.findByTrangThai(trangThai));
+        }else {
+            model.addAttribute("khachHang", page);
+        }
         return "KhachHang/khachHang";
     }
     @PostMapping("/add")

@@ -29,7 +29,7 @@ public class DiaChiController {
     @GetMapping("/hien-thi")
     public String index(Model model, @RequestParam(value = "pageNo", defaultValue = "0") int pageNo) {
 
-        Pageable pageable = PageRequest.of(pageNo, 5);
+        Pageable pageable = PageRequest.of(pageNo, 10);
 
         Page page = diaChiService.findAll(pageable);;
 

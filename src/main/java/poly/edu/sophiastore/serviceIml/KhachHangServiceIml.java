@@ -19,8 +19,8 @@ public class KhachHangServiceIml implements KhachHangService {
     KhachHangRepo khachHangRepo;
     @Override
     public Page<KhachHang> findAll(Pageable pageable) {
-        khachHangRepo.findAll(pageable);
-        return null;
+
+        return khachHangRepo.findAll(pageable);
     }
 
     @Override
@@ -49,5 +49,15 @@ public class KhachHangServiceIml implements KhachHangService {
     @Override
     public KhachHang getbyID(UUID id) {
         return khachHangRepo.getOne(id);
+    }
+
+    @Override
+    public List<KhachHang> findByKeyword(String keyword) {
+        return khachHangRepo.findByKeyWord(keyword);
+    }
+
+    @Override
+    public List<KhachHang> findByTrangThai(String trangThai) {
+        return khachHangRepo.findByTrangThai(trangThai);
     }
 }

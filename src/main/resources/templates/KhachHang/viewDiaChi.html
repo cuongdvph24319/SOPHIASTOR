@@ -9,25 +9,25 @@
       </div>
       <div class="form-group">
         <label>quốc gia</label>
-        <input th:field="*{quocGia}" type="text" class="form-control" >
+        <input th:field="*{quocGia}" type="disable" value="Việt Nam" class="form-control" >
       </div>
       <div class="form-group">
         <label>Tỉnh</label>
-        <select  th:field="*{tinh}" id="province">
-          <option value="">chọn quận</option>
+        <select  th:field="*{tinh}" id="province" class="form-control">
+          <option value=""></option>
         </select>
       </div>
       <div class="form-group">
         <label>quan,huyện</label>
-        <select th:field="*{thanhPho}" id="district">
-          <option value="">chọn quận</option>
+        <select th:field="*{thanhPho}" id="district" class="form-control">
+          <option value=""></option>
         </select>
 
       </div>
       <div class="form-group">
         <label>phường,xã</label>
-        <select th:field="*{quanHuyen}" id="ward">
-          <option value="">chọn phường</option>
+        <select th:field="*{quanHuyen}" id="ward" class="form-control">
+          <option value=""></option>
         </select>
       </div>
       <div class="form-group">
@@ -36,7 +36,7 @@
       </div>
       <div class="form-group">
         <label>Khách hàng</label>
-        <select  th:field="*{khachHang}">
+        <select  th:field="*{khachHang}" class="form-control">
           <option th:each="khachHang: ${khachHang}" th:text="${khachHang.maKhachHang}+'-'+${khachHang.tenKhachHang}" th:value="${khachHang.id}"></option>
         </select>
       </div>
