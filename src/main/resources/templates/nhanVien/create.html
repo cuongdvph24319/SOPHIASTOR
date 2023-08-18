@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/layout}">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <form action="/admin/nhanvien/store" method="post" th:object="${nhanvien}">
+        <div class="row mt-3">
+            <div class="col form-floating">
+                <div class="form-floating">
+                    <input id="maNhanVien" th:field="*{maNhanVien}" class="form-control" placeholder="Enter email">
+                    <label for="maNhanVien" class="form-label">Mã</label>
+                    <p th:errors="*{maNhanVien}" class="text-danger"></p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="form-floating">
+
+                    <input id="tenNhanVien" th:field="*{tenNhanVien}" type="text" class="form-control"  placeholder="Enter email">
+                    <label for="tenNhanVien">Tên</label>
+                    <p th:errors="*{tenNhanVien}" class="text-danger"></p>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="form-floating">
+
+                    <input id="email" th:field="*{email}" type="text" class="form-control" placeholder="Enter email">
+                    <label for="email">Email</label>
+                    <p th:errors="*{email}" class="text-danger"></p>
+                </div>
+
+            </div>
+        </div>
+        <!--    <div class="row mt-3">-->
+        <!--        <div class="col-6">-->
+        <!--            <lable>Địa chỉ</lable>-->
+        <!--            <input type="text" name="ho" value="${valueHo}" class="form-control">-->
+        <!--            <p class="text-danger">${hoLoi}</p>-->
+        <!--        </div>-->
+        <!--&lt;!&ndash;        <div class="col-6 mt-4">&ndash;&gt;-->
+        <!--&lt;!&ndash;            <lable>Giới tính</lable>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <input type="radio" name="gioi_tinh"  value="Nam"> Nam&ndash;&gt;-->
+        <!--&lt;!&ndash;            <input type="radio" name="gioi_tinh" value="Nữ"> Nữ&ndash;&gt;-->
+        <!--&lt;!&ndash;            <p class="text-danger">${gtLoi}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </div>&ndash;&gt;-->
+        <!--    </div>-->
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="form-floating">
+
+                    <input id="ngaySinh" type="date" th:field="*{NgaySinh}" class="form-control" placeholder="Enter email">
+                    <label for="ngaySinh">Ngày Sinh</label>
+                    <p th:errors="*{NgaySinh}" class="text-danger"></p>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="form-floating">
+
+                    <input id="diaChi" type="text" th:field="*{diaChi}" class="form-control" placeholder="Enter email">
+                    <label for="diaChi">Địa Chỉ</label>
+                    <p th:errors="*{diaChi}" class="text-danger"></p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="form-floating">
+
+                    <input id="soDienThoai" type="text" th:field="*{soDienThoai}" class="form-control" placeholder="Enter email">
+                    <label for="soDienThoai">Sdt</label>
+                    <p th:errors="*{soDienThoai}" class="text-danger"></p>
+                </div>
+
+            </div>
+
+            <div class="col-6">
+                <div class="form-floating">
+
+                    <select class="form-select" id="chucVu" th:field="*{chucVu}">
+                        <option th:each="cv : ${listCV}" th:value="${cv.id}" th:text="${cv.tenChucVu}"></option>
+                    </select>
+                    <label for="chucVu">Chức vụ</label>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button class="btn btn-primary mt-3" style="margin-left: 46%">
+            Thêm mới
+        </button>
+    </form>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+
+<body xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/layout}"  >
+<div class="container"  layout:fragment="content">
+<form  th:action="@{/admin/nhanvien/update}" method="post" th:object="${nhanvien}">
+    <div class="row mt-3">
+        <div class="col">
+            <lable>Mã</lable>
+            <input th:field="*{maNhanVien}" class="form-control" readonly>
+            <p th:errors="*{maNhanVien}" class="text-danger"></p>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-6">
+            <lable>Tên</lable>
+            <input th:field="*{tenNhanVien}" type="text"    class="form-control">
+            <p th:errors="*{tenNhanVien}" class="text-danger"></p>
+        </div>
+        <div class="col-6">
+            <lable>Email</lable>
+            <input th:field="*{email}" type="text" class="form-control">
+            <p th:errors="*{email}" class="text-danger"></p>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-6">
+            <lable>Ngày Sinh</lable>
+            <input type="date" th:field="*{NgaySinh}" class="form-control">
+            <p th:errors="*{NgaySinh}" class="text-danger"></p>
+        </div>
+        <div class="col-6">
+            <lable>Địa Chỉ</lable>
+            <input type="text" th:field="*{diaChi}"   class="form-control">
+            <p th:errors="*{diaChi}" class="text-danger"></p>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-6">
+            <lable>Sdt</lable>
+            <input type="text" th:field="*{soDienThoai}"   class="form-control">
+            <p th:errors="*{soDienThoai}" class="text-danger"></p>
+        </div>
+        <div class="col-6">
+            <lable>Chức vụ</lable>
+            <select  th:field="*{chucVu}">
+                <option th:each="cv : ${listCV}" th:value="${cv.id}" th:text="${cv.tenChucVu}"></option>
+            </select>
+        </div>
+
+    </div>
+
+
+    <button class="btn btn-primary mt-3" style="margin-left: 46%">
+        Update
+    </button>
+</form>
+</div>
+</body>
