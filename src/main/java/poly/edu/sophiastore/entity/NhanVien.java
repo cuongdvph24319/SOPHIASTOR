@@ -24,13 +24,13 @@ public class NhanVien {
     private UUID id;
     @Column(name = "MaNhanVien")
     private String maNhanVien;
-    @Column(name = "TenNhanVien")
+    @Column(name = "TenNhanVien", columnDefinition = "ntext")
     private String tenNhanVien;
     @Column(name = "NgaySinh")
     private Date NgaySinh;
     @Column(name = "SoDienThoai")
     private String soDienThoai;
-    @Column(name = "DiaChi")
+    @Column(name = "DiaChi", columnDefinition = "ntext")
     private String diaChi;
     @Column(name = "Email")
     private String email;

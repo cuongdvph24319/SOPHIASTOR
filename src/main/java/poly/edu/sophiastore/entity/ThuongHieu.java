@@ -23,7 +23,7 @@ public class ThuongHieu {
     @Column(name = "MaThuongHieu")
     private String maThuongHieu;
 
-    @Column(name = "TenThuongHieu")
+    @Column(name = "TenThuongHieu", columnDefinition = "ntext")
     private String tenThuongHieu;
 
     @Column(name = "TrangThai")

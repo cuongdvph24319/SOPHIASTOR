@@ -21,11 +21,11 @@ public class DoToaHuong {
     @Column(name = "MaDoToaHUong")
     private String maDoLuuHUong;
 
-    @Column(name = "ThoiGianToiThieu")
-    private Integer thoiGianToiThieu;
+    @Column(name = "KhoangCachToiThieu")
+    private Integer kcToiThieu;
 
-    @Column(name = "ThoiGianToiDa")
-    private Integer thoiGianToiDa;
+    @Column(name = "KhoangCachToiDa")
+    private Integer KCToiDa;
 
     @Column(name = "TrangThai")
     private Integer trangThai;
