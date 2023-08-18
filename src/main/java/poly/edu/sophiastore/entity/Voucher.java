@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
-import poly.edu.sophiastore.request.VoucherView;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +28,7 @@ public class Voucher {
     private UUID id;
     @Column(name = "MaGiamGia")
     private String maGiamGia;
-    @Column(name = "TenGiamGia")
+    @Column(name = "TenGiamGia", columnDefinition = "ntext")
     private String tenGiamGia;
     @Column(name = "SoLuong")
     private Integer soLuong;
@@ -44,7 +44,7 @@ public class Voucher {
     private Date ngayKetThuc;
     @Column(name = "TrangThai")
     private Integer trangThai;
-    @Column(name = "DieuKienGiamGia")
+    @Column(name = "DieuKienGiamGia", columnDefinition = "ntext")
     private String dieuKienGiamGia;
     @Column(name = "PhanTramGiamGia")
     private String phanTramGiamGia;
@@ -52,15 +52,15 @@ public class Voucher {
     @OneToMany(mappedBy = "id.voucher", fetch = FetchType.LAZY)
     private List<VouCherChiTiet> listVoucher = new ArrayList<>();
 
-    public void loadFormViewModel(VoucherView voucher){
-        this.setMaGiamGia(voucher.getMaGiamGia());
-        this.setTenGiamGia(voucher.getTenGiamGia());
-        this.setSoLuong(voucher.getSoLuong());
-        this.setNgayBatDau(voucher.getNgayBatDau());
-        this.setNgayKetThuc(voucher.getNgayKetThuc());
-        this.setTrangThai(voucher.getTrangThai());
-        this.setDieuKienGiamGia(voucher.getDieuKienGiamGia());
-        this.setPhanTramGiamGia(voucher.getPhanTramGiamGia());
-    }
+//    public void loadFormViewModel(VoucherView voucher){
+//        this.setMaGiamGia(voucher.getMaGiamGia());
+//        this.setTenGiamGia(voucher.getTenGiamGia());
+//        this.setSoLuong(voucher.getSoLuong());
+//        this.setNgayBatDau(voucher.getNgayBatDau());
+//        this.setNgayKetThuc(voucher.getNgayKetThuc());
+//        this.setTrangThai(voucher.getTrangThai());
+//        this.setDieuKienGiamGia(voucher.getDieuKienGiamGia());
+//        this.setPhanTramGiamGia(voucher.getPhanTramGiamGia());
+//    }
 
 }

@@ -24,7 +24,7 @@ public class KhachHang {
     private UUID id;
     @Column(name = "MaKhachHang")
     private String maKhachHang;
-    @Column(name = "tenKhachHang")
+    @Column(name = "tenKhachHang", columnDefinition = "ntext")
     private String tenKhachHang;
     @Column(name = "NgaySinh")
     private Date ngaySinh;

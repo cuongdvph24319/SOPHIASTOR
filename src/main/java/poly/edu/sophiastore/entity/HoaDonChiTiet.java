@@ -22,7 +22,7 @@ public class HoaDonChiTiet {
     @Column(name = "DonGia")
     private Double donGia;
 
-    @Column(name = "LyDo")
+    @Column(name = "LyDo", columnDefinition = "ntext")
     private String lyDo;
 
     @Column(name = "TrangThai")

@@ -22,8 +22,10 @@ public class ChucVu {
     private UUID id;
     @Column(name = "MaChucVu")
     private String maChucVu;
-    @Column(name = "TenChucVu")
+
+    @Column(name = "TenChucVu", columnDefinition = "ntext")
     private String tenChucVu;
+
     @Column(name = "TrangThai")
     private Integer trangThai;
 

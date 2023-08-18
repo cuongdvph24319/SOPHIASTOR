@@ -25,7 +25,7 @@ public class ChiTietNuocHoa {
     @Column(name = "MaNuocHoa")
     private String maNuocHoa;
 
-    @Column(name = "TenNuocHoa")
+    @Column(name = "TenNuocHoa", columnDefinition = "ntext")
     private String tenNuocHoa;
 
     @Column(name = "SoLuong")
@@ -34,7 +34,7 @@ public class ChiTietNuocHoa {
     @Column(name = "NamPhatHanh")
     private Integer namPhatHanh;
 
-    @Column(name = "MoTa")
+    @Column(name = "MoTa", columnDefinition = "ntext")
     private String moTa;
 
     @Column(name = "TrangThai")

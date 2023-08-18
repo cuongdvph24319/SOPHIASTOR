@@ -7,22 +7,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class testController {
 
     @RequestMapping("/1")
-    public String index(){
+    public String index() {
         return "nhanVien/test";
     }
 
 
     @RequestMapping("/2")
-    public String w2(){
+    public String w2() {
         return "nhanVien/nhanVien";
     }
+
     @RequestMapping("/3")
-    public String w3(){
+    public String w3() {
         return "nhanVien/test";
     }
 
     @RequestMapping("/4")
-    public String w4(){
+    public String w4() {
         return "template/cart";
     }
+
 }
