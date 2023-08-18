@@ -25,7 +25,7 @@ public class LichSuHoaDon {
     private String trangThai;
     @Column(name = "ThoiGian")
     private Date thoiGian;
-    @Column(name = "ThaoTac", columnDefinition = "ntext")
+    @Column(name = "ThaoTac")
     private String thaoTac;
     @Column(name = "GhiChu")
     private String ghiChu;

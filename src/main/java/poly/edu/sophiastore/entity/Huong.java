@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Huong")
+@Table(name = "KetCau")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,7 +23,7 @@ public class Huong {
     @Column(name = "MaHuong")
     private String maHuong;
 
-    @Column(name = "TenHuong", columnDefinition = "ntext")
+    @Column(name = "TenHuong")
     private String tenHuong;
 
     @Column(name = "TrangThai")

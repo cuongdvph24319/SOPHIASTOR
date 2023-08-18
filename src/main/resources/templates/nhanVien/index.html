@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/layout}">
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+
+    <!----css3---->
+    <link rel="stylesheet" href="/css/custom.css">
+
+</head>
+<body>
+<section>
+
+
+    <div layout:fragment="content" class="col-md-12">
+        <div>
+            <!--            Theem 1 div dưới layout-->
+            <div class="row">
+
+                <div class="col-12">
+
+                    <form th:action="@{/admin/nhanvien/hienthi}" class="form-floating">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control"
+                                               placeholder="Nhập mã,tên, email..."
+                                               id="textSearch"
+                                               th:value="${textSearch}"
+                                               name="textSearch" aria-label="Search"/>
+                                        <label for="textSearch" class="form-label">Nhập mã, tên, địa chỉ..</label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <br>
+
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <div class="form-floating">
+                                        <select id="trangThai" style="border-radius: 10px;" th:name="trangThai"
+                                                class="form-select" th:onchange="this.form.submit()">
+                                            <div style="border: 10px">
+                                                <option th:selected="${trangThai} == -1 ? true : false" value="-1">Tất
+                                                    cả
+                                                </option>
+                                                <option th:selected="${trangThai} == 0 ? true : false" value="0">Hoạt
+                                                    động
+                                                </option>
+                                                <option th:selected="${trangThai} == 1 ? true : false" value="1">Không
+                                                    hoạt
+                                                    động
+                                                </option>
+                                            </div>
+                                        </select> &nbsp;
+                                        <label for="trangThai">Trạng thái: </label>
+                                    </div>
+
+                                    <!--                                    <button type="submit" class="btn btn-warning text-white">Submit</button>-->
+                                    <!--                                    <button type="reset">Làm mới</button>-->
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="input-group" style="margin-left: 35px">
+                                    <div class="form-floating">
+                                        <select style="border-radius: 10px;" id="chucVu" th:name="chucVu"
+                                                class="form-select">
+                                            <div style="border: 10px">
+                                                <option value="Chủ cửa hàng">Chủ cửa hàng
+                                                </option>
+<!--                                                th:selected="${chucVu.tenChucVu}.equal('Nhân viên')  ? true : false"-->
+                                                <option  value="Nhân viên">Nhân viên
+                                                </option>
+                                            </div>
+                                        </select> &nbsp;
+                                        <label for="chucVu" class="form-label">Chức Vụ</label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-3">
+                                    <button type="submit" class="btn btn-warning text-white mx-2">Submit</button>
+                                    <a class="btn btn-primary text-white mx-2" th:href="@{/admin/nhanvien/hienthi}">Làm mới</a>
+                                </div>
+
+
+                            </div>
+                    </form>
+                </div>
+            </div>
+
+            <!--                <div class="col-5"></div>-->
+
+            <!--                <div class="col-4">-->
+            <!--                    <form th:action="@{/admin/nhanvien/hienthi}">-->
+            <!--                        -->
+            <!--                    </form>-->
+            <!--                </div>-->
+
+        </div>
+        <br>
+
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6 p-0 d-flex  justify-content-center">
+                        <h2 class="ml-lg-2">QUẢN LÍ NHÂN VIÊN</h2>
+                    </div>
+
+                    <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
+                        <a href="/admin/nhanvien/create" class="btn btn-success">
+                            <i class="material-icons">&#xE147;</i> <span>THÊM MỚI</span></a>
+
+                        <!--                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">-->
+                        <!--                                <i class="material-icons">&#xE147;</i> <span>THÊM MỚI</span></a>-->
+
+                    </div>
+                </div>
+            </div>
+
+
+            <table class="table  table-hover table-bordered">
+                <thead>
+                <tr>
+                    <!-- <th>
+                      <span class="custom-checkbox">
+                        <input type="checkbox" id="selectAll">
+                        <label for="selectAll"></label>
+                      </span>
+                    </th> -->
+                    <th>STT</th>
+                    <th>Mã</th>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>Địa chỉ</th>
+                    <th>Ngày Sinh</th>
+                    <th>Số điện thoại</th>
+                    <th>Chức vụ</th>
+                    <th>Trạng thái</th>
+
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                <tr th:each="nv : ${listNV.content}">
+                    <!-- <td>
+                      <span class="custom-checkbox">
+                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                        <label for="checkbox1"></label>
+                      </span>
+                    </td> -->
+
+                    <td th:text="${nvStat.index +1}"></td>
+                    <td th:text="${nv.maNhanVien}"></td>
+                    <td th:text="${nv.tenNhanVien}"></td>
+                    <td th:text="${nv.email}"></td>
+                    <td th:text="${nv.diaChi}"></td>
+                    <td th:text="${nv.NgaySinh}"></td>
+                    <td th:text="${nv.soDienThoai}"></td>
+                    <td th:text="${nv.chucVu.tenChucVu}">Chức vụ 1</td>
+                    <td th:if="${nv.trangThai==0}" style="width: 150px;">
+                        <button class="btn btn-primary" style="border-radius: 30px; font-size: 14px;">Hoạt động
+                        </button>
+                    </td>
+                    <td th:unless="${nv.trangThai==0}" style="width: 160px;">
+                        <button class="btn btn-danger" style="border-radius: 30px; font-size: 13px;">Ngưng hoạt
+                            động
+                        </button>
+                    </td>
+
+                    <td>
+                        <!--                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">-->
+                        <!--                                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
+
+                        <a th:href="@{/admin/nhanvien/edit/{id}(id=${nv.id})}" class="edit">
+                            <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                        </a>
+
+                        <a onclick="return confirm('Bạn có muốn xóa không')"
+                           th:href="@{/admin/nhanvien/delete/{id}(id=${nv.id})}" class="delete">
+                            <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                        </a>
+
+                        <!--                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">-->
+                        <!--                                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>-->
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <div class="">
+
+                <div class="col-3">
+                    <div class="hint-text">Tổng NV: <b th:text="${tongNV}"></b> &ensp; Xem trang <b
+                            th:text="${pageNo+1}+'/'+${listNV.totalPages}"></b>
+                    </div>
+                </div>
+
+                <div class="col-7">
+
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" th:if="${pageNo > 0}"
+                               th:href="@{/admin/nhanvien/hienthi(pageNo=${pageNo - 1})}">Prev</a>
+                            <span class="page-link" th:unless="${pageNo > 0}">Prev</span>
+                        </li>
+                        <li th:each="i: ${#numbers.sequence(0, listNV.totalPages-1)}" class="page-item">
+                            <a th:href="@{/admin/nhanvien/hienthi(pageNo=${i})}" class="page-link"
+                               th:text="${i +1}"></a>
+                        </li>
+
+                        <li class="page-item">
+                            <a class="page-link" th:if="${pageNo < listNV.totalPages -1}"
+                               th:href="@{/admin/nhanvien/hienthi(pageNo=${pageNo + 1})}">Next</a>
+                            <span class="page-link" th:unless="${pageNo < listNV.totalPages -1}">Next</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</section>
+
+</body>
+</html>
+
+
+
+
+
+

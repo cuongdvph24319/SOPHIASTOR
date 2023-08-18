@@ -20,8 +20,7 @@ public class ChiTietHuong {
     @Column(name = "Id")
     private UUID id;
 
-    @Column(name = "TrangThai")
-    private Integer trangThai;
+    private Integer TrangThai;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idChiTietNuocHoa")

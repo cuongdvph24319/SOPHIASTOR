@@ -19,16 +19,12 @@ public class HinhThucThanhToan {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "Id")
     private UUID id;
-
     @Column(name = "MaHinhThuc")
     private String maHinhThuc;
-
-    @Column(name = "TenHinhThuc", columnDefinition = "ntext")
+    @Column(name = "TenHinhThuc")
     private String tenHinhThuc;
-
     @Column(name = "SoTien")
     private Double soTien;
-
     @Column(name = "TrangThai")
     private Integer trangThai;
 

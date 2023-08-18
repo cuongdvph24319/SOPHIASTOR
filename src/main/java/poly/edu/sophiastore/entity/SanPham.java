@@ -20,14 +20,9 @@ public class SanPham {
     @Column(name = "Id")
     private UUID id;
 
-    @Column(name = "MaSanPham")
-    private String maSanPham;
+    private String MaSanPham;
 
-    @Column(name = "TenSanPham", columnDefinition = "ntext")
-    private String tenSanPham;
-
-    @Column(name = "TrangThai")
-    private Integer trangThai;
+    private String TenSanPham;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdXuatXu")

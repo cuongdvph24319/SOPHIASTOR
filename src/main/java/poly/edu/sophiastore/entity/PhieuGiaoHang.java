@@ -24,11 +24,11 @@ public class PhieuGiaoHang {
     private UUID id;
     @Column(name = "MaPhieuGiaoHang")
     private String maPhieuGiaoHang;
-    @Column(name = "TenNguoiNhan", columnDefinition = "ntext")
+    @Column(name = "TenNguoiNhan")
     private String tenNguoiNhan;
     @Column(name = "SoDienThoaiNguoiNhan")
     private String soDienThoaiNguoiNhan;
-    @Column(name = "NguoiGiao", columnDefinition = "ntext")
+    @Column(name = "NguoiGiao")
     private String nguoiGiao;
     @Column(name = "SoDienThoaiNguoiGiao")
     private String soDienThoaiNguoiGiao;
@@ -36,11 +36,11 @@ public class PhieuGiaoHang {
     private Date ngayGiao;
     @Column(name = "NgayNhan")
     private Date ngayNhan;
-    @Column(name = "NguoiTao", columnDefinition = "ntext")
+    @Column(name = "NguoiTao")
     private String nguoiTao;
     @Column(name = "PhiGiaoHang")
     private Double phiGiaoHang;
-    @Column(name = "GhiChu", columnDefinition = "ntext")
+    @Column(name = "GhiChu")
     private String ghiChu;
     @Column(name = "TrangThai")
     private Integer trangThai;

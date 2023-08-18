@@ -23,7 +23,7 @@ public class KetCau {
     @Column(name = "MaKetCau")
     private String maKetCau;
 
-    @Column(name = "TenKetCau", columnDefinition = "ntext")
+    @Column(name = "TenKetCau")
     private String tenKetCau;
 
     @Column(name = "TrangThai")

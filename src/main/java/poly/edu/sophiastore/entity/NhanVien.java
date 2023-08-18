@@ -1,10 +1,10 @@
 package poly.edu.sophiastore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +17,10 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
+@Builder
+
+@ToString
 public class NhanVien {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -24,13 +28,16 @@ public class NhanVien {
     private UUID id;
     @Column(name = "MaNhanVien")
     private String maNhanVien;
-    @Column(name = "TenNhanVien", columnDefinition = "ntext")
+    @Column(name = "TenNhanVien")
     private String tenNhanVien;
     @Column(name = "NgaySinh")
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     private Date NgaySinh;
     @Column(name = "SoDienThoai")
     private String soDienThoai;
-    @Column(name = "DiaChi", columnDefinition = "ntext")
+    @Column(name = "DiaChi")
     private String diaChi;
     @Column(name = "Email")
     private String email;
@@ -43,6 +50,9 @@ public class NhanVien {
     @JoinColumn(name = "IdChucVu")
     private ChucVu chucVu;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY)
     private List<LichSuHoaDon> listLichSuHoaDon = new ArrayList<>();
+
+
 }
