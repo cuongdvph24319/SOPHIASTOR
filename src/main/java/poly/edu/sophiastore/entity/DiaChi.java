@@ -21,17 +21,23 @@ public class DiaChi {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "Id")
     private UUID id;
+
     @Column(name = "MaDiaChi")
     private String maDiaChi;
-    @Column(name = "MoTaChiTiet")
+
+    @Column(name = "MoTaChiTiet", columnDefinition = "ntext")
     private String moTaChiTiet;
-    @Column(name = "QuanHuyen")
+
+    @Column(name = "QuanHuyen", columnDefinition = "ntext")
     private String quanHuyen;
-    @Column(name = "ThanhPho")
+
+    @Column(name = "ThanhPho", columnDefinition = "ntext")
     private String thanhPho;
-    @Column(name = "Tinh")
+
+    @Column(name = "Tinh", columnDefinition = "ntext")
     private String tinh;
-    @Column(name = "QuocGia")
+
+    @Column(name = "QuocGia", columnDefinition = "ntext")
     private String quocGia;
 
     @ManyToOne(fetch = FetchType.EAGER)

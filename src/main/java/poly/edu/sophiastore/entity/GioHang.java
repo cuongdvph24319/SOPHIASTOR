@@ -21,10 +21,13 @@ public class GioHang {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "Id")
     private UUID id;
+
     @Column(name = "MaGioHang")
     private String maGioHang;
+
     @Column(name = "NgayTao")
     private Date ngayTao;
+
     @Column(name = "GhiChu")
     private String ghiChu;
 
